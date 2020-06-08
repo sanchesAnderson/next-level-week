@@ -42,3 +42,41 @@ document
     .addEventListener("change", populateCitys)
 //fim
 
+//Itens de coleta
+const items = document.querySelectorAll(".items-grid li")
+
+for(const item of items) {
+    item.addEventListener("click", handSelectedItem)
+}
+
+const collectedItems = document.querySelector("input[name=items]")
+
+let selectedItems = []
+
+function handSelectedItem(event) {
+
+    const tagLi = event.target
+    tagLi.classList.toggle("selected")
+
+    const itemId = event.target.dataset.id
+
+
+    // Verificar se existem itens selecionados, se sim
+    // guarda os itens selecionados
+    const alreadySelected = selectedItems.findIndex(item => item == itemId)
+    
+    
+    // se já estiver selecionado
+    if(alreadySelected != -1) {
+        // tira da seleção
+        const filteredItems = selectedItems.filter( item => item != itemId)
+
+        selectedItems = filteredItems
+    } else {
+        //se não estiver selecionado
+        // adiciona à seleção
+        selectedItems.push(itemId)
+    }
+
+    collectedItems.value = selectedItems
+}

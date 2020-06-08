@@ -35,6 +35,10 @@
         width: 300px;
     }
 
+    #page-search-results cards {
+        align-items: center;
+    }
+
 }
 
 
